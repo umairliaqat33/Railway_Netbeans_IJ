@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -33,15 +33,15 @@ public class MainScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         PakistanRaiwaysLabel = new javax.swing.JLabel();
-        SignInLabel = new javax.swing.JLabel();
+//        SignInLabel = new javax.swing.JLabel();
         searchTrainsPanel = new javax.swing.JPanel();
         searchTrainsLabel = new javax.swing.JLabel();
         fromLabel = new javax.swing.JLabel();
         fromField = new javax.swing.JTextField();
         ToLabel = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        toField = new javax.swing.JTextField();
         searchTimingsButton = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        dateField = new javax.swing.JTextField();
         DateLabel = new javax.swing.JLabel();
         trainTimingsButton = new javax.swing.JButton();
         bookedTicketsButton = new javax.swing.JButton();
@@ -124,19 +124,19 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().add(PakistanRaiwaysLabel);
         PakistanRaiwaysLabel.setBounds(132, 22, 166, 33);
 
-        SignInLabel.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
-        SignInLabel.setForeground(new java.awt.Color(255, 153, 0));
-        SignInLabel.setText("SignIn");
-        getContentPane().add(SignInLabel);
-        SignInLabel.setBounds(751, 22, 56, 33);
-        SignInLabel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                dispose();
-                Login login=new Login();
-                login.setVisible(true);
-            }
-        });
+//        SignInLabel.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+//        SignInLabel.setForeground(new java.awt.Color(255, 153, 0));
+//        SignInLabel.setText("SignIn");
+//        getContentPane().add(SignInLabel);
+//        SignInLabel.setBounds(751, 22, 56, 33);
+//        SignInLabel.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                dispose();
+//                Login login=new Login();
+//                login.setVisible(true);
+//            }
+//        });
 
 
         searchTrainsPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -160,15 +160,16 @@ public class MainScreen extends javax.swing.JFrame {
         ToLabel.setForeground(new java.awt.Color(0, 153, 0));
         ToLabel.setText("To:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        toField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                toFieldActionPerformed(evt);
             }
         });
 
         searchTimingsButton.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
         searchTimingsButton.setForeground(new java.awt.Color(0, 153, 0));
         searchTimingsButton.setText("Search Timings");
+        searchTimingsButton.addActionListener(new searchTrainTimingsAction());
 
         DateLabel.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
         DateLabel.setForeground(new java.awt.Color(0, 153, 0));
@@ -195,10 +196,10 @@ public class MainScreen extends javax.swing.JFrame {
                                                         .addGroup(searchTrainsPanelLayout.createSequentialGroup()
                                                                 .addGap(10, 10, 10)
                                                                 .addComponent(searchTimingsButton))
-                                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGroup(searchTrainsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                 .addComponent(fromField)
-                                                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
+                                                                .addComponent(toField, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
                                         .addGroup(searchTrainsPanelLayout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addComponent(searchTrainsLabel)))
@@ -216,10 +217,10 @@ public class MainScreen extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(searchTrainsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(ToLabel)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(toField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(searchTrainsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(DateLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(searchTimingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,6 +237,7 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().add(trainTimingsButton);
         trainTimingsButton.setBounds(98, 362, 123, 104);
         trainTimingsButton.add(trainTimingsPanel);
+        trainTimingsButton.addActionListener(new trainTimings());
 
 
         bookedTicketsButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -279,6 +281,7 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().add(becomeMemberButton);
         becomeMemberButton.setBounds(446, 362, 135, 104);
         becomeMemberButton.add(becomeMemberPanel);
+        becomeMemberButton.addActionListener(new becomeMemberAction());
 
 
         book3DSeatsButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -318,7 +321,7 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void toFieldActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -369,7 +372,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton bookingsHistoryButton;
     private javax.swing.JButton book3DSeatsButton;
     private javax.swing.JLabel PakistanRaiwaysLabel;
-    private javax.swing.JLabel SignInLabel;
+//    private javax.swing.JLabel SignInLabel;
     private javax.swing.JLabel searchTrainsLabel;
     private javax.swing.JLabel fromLabel;
     private javax.swing.JLabel ToLabel;
@@ -378,8 +381,8 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel searchTrainsPanel;
     private javax.swing.JTextField fromField;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField toField;
+    private javax.swing.JTextField dateField;
     private JPanel trainTimingsPanel;
     private JPanel freightRatesPanel;
     private JPanel becomeMemberPanel;
@@ -409,6 +412,37 @@ public class MainScreen extends javax.swing.JFrame {
     private JLabel book3DSeatsIconLabel;
 
 
+    public class trainTimings implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            Train_Timings train_timings=new Train_Timings();
+            train_timings.setVisible(true);
+        }
+    }
+
+    public class searchTrainTimingsAction implements  ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+//            System.out.println(fromField.getText());
+//            System.out.println(toField.getText());
+//            System.out.println(dateField.getText());
+            dispose();
+            TrainTimingsTable trainTimingsTable=new TrainTimingsTable(fromField.getText(),toField.getText(),dateField.getText());
+        }
+    }
+
+    public class becomeMemberAction implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            Login login=new Login();
+            login.setVisible(true);
+        }
+    }
     // End of variables declaration
 
     // End of variables declaration

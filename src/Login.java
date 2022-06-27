@@ -37,7 +37,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -67,6 +67,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setBounds(85, 145, 76, 26);
         getContentPane().add(jTextField2);
         jTextField2.setBounds(169, 147, 145, 22);
+//        jTextField2.setP
 
         jLabel4.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,7 +162,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField jTextField2;
     String q="Select * from user where Name=? and Password=?";
 
 
@@ -169,6 +170,7 @@ public class Login extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            System.out.println(jTextField2.getPassword());
             if(e.getSource()==jButton2)
             {
                 try{
@@ -177,7 +179,7 @@ public class Login extends javax.swing.JFrame {
 
                     PreparedStatement pst = con.prepareStatement(q);
                     pst.setString(1, jTextField1.getText());
-                    pst.setString(2, jTextField2.getText());
+                    pst.setString(2, String.valueOf(jTextField2.getPassword()));
                     ResultSet rs = pst.executeQuery();
 
                     if(rs.next()){

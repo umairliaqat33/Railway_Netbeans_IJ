@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author umair
@@ -67,6 +70,7 @@ public class Train_Timings extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 153, 0));
         jButton1.setText("Search Trains");
+        jButton1.addActionListener(new Action());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -185,5 +189,14 @@ public class Train_Timings extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+
+    public class Action implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            TrainTimingsTable trainTimingsTable=new TrainTimingsTable(jTextField1.getText(),jTextField2.getText(),jTextField3.getText());
+        }
+    }
     // End of variables declaration//GEN-END:variables
 }
