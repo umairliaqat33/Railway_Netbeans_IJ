@@ -6,6 +6,8 @@
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -127,6 +129,14 @@ public class MainScreen extends javax.swing.JFrame {
         SignInLabel.setText("SignIn");
         getContentPane().add(SignInLabel);
         SignInLabel.setBounds(751, 22, 56, 33);
+        SignInLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+                Login login=new Login();
+                login.setVisible(true);
+            }
+        });
 
 
         searchTrainsPanel.setBackground(new java.awt.Color(255, 255, 255));

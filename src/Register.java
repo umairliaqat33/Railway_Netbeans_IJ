@@ -3,8 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
+
 /**
- *
  * @author umair
  */
 public class Register extends javax.swing.JFrame {
@@ -27,18 +31,18 @@ public class Register extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        UsernameField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        NameField = new javax.swing.JTextField();
+        PhoneField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        CNICField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        PasswordField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        RegisterButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        LoginButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,34 +59,34 @@ public class Register extends javax.swing.JFrame {
         jLabel2.setText("Username/Email:");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(70, 84, 158, 22);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(240, 86, 231, 22);
+        getContentPane().add(UsernameField);
+        UsernameField.setBounds(240, 86, 231, 22);
 
         jLabel3.setFont(new java.awt.Font("Segoe Print", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Full Name:");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(70, 125, 98, 16);
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(240, 121, 231, 22);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(240, 150, 231, 22);
+        getContentPane().add(NameField);
+        NameField.setBounds(240, 121, 231, 22);
+        getContentPane().add(PhoneField);
+        PhoneField.setBounds(240, 150, 231, 22);
 
         jLabel4.setFont(new java.awt.Font("Segoe Print", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Phone:");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(70, 154, 60, 16);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(240, 185, 231, 22);
+        getContentPane().add(CNICField);
+        CNICField.setBounds(240, 185, 231, 22);
 
         jLabel5.setFont(new java.awt.Font("Segoe Print", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("CNIC:");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(70, 189, 52, 16);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(240, 220, 231, 22);
+        getContentPane().add(PasswordField);
+        PasswordField.setBounds(240, 220, 231, 22);
 
         jLabel6.setFont(new java.awt.Font("Segoe Print", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,17 +94,13 @@ public class Register extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(70, 224, 92, 16);
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 153, 0));
-        jButton1.setText("Register");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(208, 255, 141, 41);
+        RegisterButton.setBackground(new java.awt.Color(255, 153, 0));
+        RegisterButton.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        RegisterButton.setForeground(new java.awt.Color(0, 153, 0));
+        RegisterButton.setText("Register");
+        RegisterButton.addActionListener(new Action());
+        getContentPane().add(RegisterButton);
+        RegisterButton.setBounds(208, 255, 141, 41);
 
         jLabel7.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,12 +108,13 @@ public class Register extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(89, 314, 235, 33);
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 0));
-        jButton2.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 153, 0));
-        jButton2.setText("Login");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(329, 324, 65, 18);
+        LoginButton.setBackground(new java.awt.Color(255, 153, 0));
+        LoginButton.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
+        LoginButton.setForeground(new java.awt.Color(0, 153, 0));
+        LoginButton.setText("Login");
+        getContentPane().add(LoginButton);
+        LoginButton.setBounds(329, 324, 65, 18);
+        LoginButton.addActionListener(new LAction());
 
         jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\umair\\OneDrive\\Documents\\Semester 4\\Java\\Railway_Netbeans\\src\\main\\java\\images\\railway_register.jpg")); // NOI18N
         jLabel8.setText("jLabel8");
@@ -123,48 +124,48 @@ public class Register extends javax.swing.JFrame {
         setBounds(0, 0, 543, 458);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_RegisterButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Register().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Register().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton RegisterButton;
+    private javax.swing.JButton LoginButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -173,10 +174,76 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField UsernameField;
+    private javax.swing.JTextField NameField;
+    private javax.swing.JTextField PhoneField;
+    private javax.swing.JTextField CNICField;
+    private javax.swing.JTextField PasswordField;
+    String qry = "Select Name from user";
+    String qry2 = "insert into user(Name,Password,UserName,Phone,CNIC)" + "values(?,?,?,?,?)";
+
+    public class Action implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            int opt=0;
+            if(e.getSource()==RegisterButton){
+                try{
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway","root","");
+                    Statement stmt=connect.createStatement();
+                    ResultSet rs=stmt.executeQuery(qry);
+
+                    while(rs.next())
+                    {
+                        if(rs.getString(1).equals(UsernameField.getText()))
+                        {
+                            opt=10;
+                            //    JOptionPane.showMessageDialog(null,"Username exist. Choose another name");
+                            //System.out.println("Choose Another USername !");
+                        }
+                        else if(rs.getString(1)!=UsernameField.getText()){
+                            opt = 20;
+                        }
+                        //System.out.println("outside if");
+                        //System.out.println("Print"+rs.getString(1));
+                    }
+                    if(opt==10){
+                        JOptionPane.showMessageDialog(null,"Username exist. Choose another name");
+                    }
+                    else if(opt==20){
+                        PreparedStatement stmnt=connect.prepareStatement(qry2);
+                        stmnt.setString(1, NameField.getText());
+                        stmnt.setString(2, PasswordField.getText());
+                        stmnt.setString(3, UsernameField.getText());
+                        stmnt.setString(4, PhoneField.getText());
+                        stmnt.setString(5, CNICField.getText());
+                        JOptionPane.showMessageDialog(null, "Account Created");
+                        stmnt.execute();
+                        dispose();
+                        Login login=new Login();
+                        login.setVisible(true);
+                    }
+
+                    connect.close();
+                }
+                catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+                //rFrame.dispose();
+            }
+        }
+    }
+
+    public class LAction implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            Login login=new Login();
+            login.setVisible(true);
+        }
+    }
     // End of variables declaration//GEN-END:variables
 }

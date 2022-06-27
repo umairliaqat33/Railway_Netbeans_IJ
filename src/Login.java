@@ -75,12 +75,14 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setBounds(80, 230, 150, 22);
 
         jButton1.setBackground(new java.awt.Color(255, 153, 0));
-        jButton1.setFont(new java.awt.Font("Segoe Print", 0, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe Print", 0, 10)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 153, 0));
         jButton1.setText("Register");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                dispose();
+                Register register=new Register();
+                register.setVisible(true);
             }
         });
         getContentPane().add(jButton1);
@@ -122,7 +124,7 @@ public class Login extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -185,7 +187,7 @@ public class Login extends javax.swing.JFrame {
                         dispose();
                     }
                     else{
-                        JOptionPane.showMessageDialog(null, "Username and password donot matched");
+                        JOptionPane.showMessageDialog(null, "Username and password did not matched!!!!!!");
                         jTextField1.setText("");
                         jTextField2.setText("");
                     }
