@@ -14,9 +14,7 @@ import java.awt.event.MouseEvent;
  */
 public class MainScreen extends javax.swing.JFrame {
 
-    /**
-     * Creates new form bookTicket
-     */
+
     public MainScreen() {
         initComponents();
     }
@@ -59,7 +57,7 @@ public class MainScreen extends javax.swing.JFrame {
         bookTicketLabel = new JLabel("Book Tickets");
         becomeMemberLabel = new JLabel("Become Member");
         bookedTicketsLabel = new JLabel("Booked Tickets");
-        cancelledTicketsLabel = new JLabel("Cancelled Tickets");
+        cancelledTicketsLabel = new JLabel("Cancel Tickets");
         book3DSeatsLabel = new JLabel("Book Seats 3D Way");
 
         trainTimingsIconLabel = new JLabel(new ImageIcon("C:\\Users\\umair\\OneDrive\\Documents\\Semester 4\\Java\\Guess_Game\\src\\com\\company\\images\\calander.png"));
@@ -208,6 +206,7 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().add(bookedTicketsButton);
         bookedTicketsButton.setBounds(198, 498, 123, 107);
         bookedTicketsButton.add(bookedTicketsPanel);
+        bookedTicketsButton.addActionListener(new bookedTicketsAction());
 
         cancelledTicketsButton.setBackground(new java.awt.Color(255, 255, 255));
         cancelledTicketsButton.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
@@ -216,6 +215,7 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().add(cancelledTicketsButton);
         cancelledTicketsButton.setBounds(367, 498, 133, 107);
         cancelledTicketsButton.add(cancelledTicketsPanel);
+        cancelledTicketsButton.addActionListener(new cancelledTicketsAction());
 
 
 
@@ -238,6 +238,7 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().add(bookTicketButton);
         bookTicketButton.setBounds(546, 362, 133, 104);
         bookTicketButton.add(bookTicketPanel);
+        bookTicketButton.addActionListener(new bookTicketsAction());
 
 
 
@@ -381,7 +382,36 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }
     // End of variables declaration
+    public class bookTicketsAction implements ActionListener{
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            Ticket_Book ticket_book=new Ticket_Book();
+            ticket_book.setVisible(true);
+        }
+    }
+
+    public class cancelledTicketsAction implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            Cancel_Tickets cancel_tickets=new Cancel_Tickets();
+            cancel_tickets.setVisible(true);
+        }
+    }
+
+
+    public class bookedTicketsAction implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            Ticket_History ticket_history=new Ticket_History();
+            ticket_history.setVisible(true);
+        }
+    }
     // End of variables declaration
 }
 
