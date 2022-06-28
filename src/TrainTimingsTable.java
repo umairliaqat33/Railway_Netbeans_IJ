@@ -15,12 +15,12 @@ public class TrainTimingsTable {
     Statement statement;//Creating object of Statement class
 
 
-    TrainTimingsTable(String sf, String st, String sd) {
+    TrainTimingsTable(String sf, String st) {
 
 
         f = new JFrame("Database Results");
 
-        f.setBounds(550, 140, 610, 380);
+        f.setBounds(550, 140, 810, 380);
         f.setResizable(false);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,42 +29,55 @@ public class TrainTimingsTable {
         //Setting the properties of JTable and DefaultTableModel
         defaultTableModel = new DefaultTableModel();
         table = new JTable(defaultTableModel);
-        table.setPreferredScrollableViewportSize(new Dimension(300, 100));
+        table.setPreferredScrollableViewportSize(new Dimension(800, 100));
         table.setFillsViewportHeight(true);
         f.add(new JScrollPane(table));
         defaultTableModel.addColumn("From Station");
         defaultTableModel.addColumn("To Station");
         defaultTableModel.addColumn("Date");
+        defaultTableModel.addColumn("Train No");
+        defaultTableModel.addColumn("Train Name");
+        defaultTableModel.addColumn("Rent");
+        defaultTableModel.addColumn("Seats");
+        defaultTableModel.addColumn("Arrival Time");
+        defaultTableModel.addColumn("Departure Time");
 
+        String from1 = sf;
+        String to1 = st;
 
+        DefaultTableModel dm = (DefaultTableModel) table.getModel();
+        int row = dm.getRowCount();
+        if (row > 0) {
+            for (int i = 0; i < row; i++) {
+                dm.removeRow(0);
+            }
+        }
         try {
-
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway", "root", "");//Crating connection with database
-            statement = connection.createStatement();//crating statement object
-            String query = "select * from traintimings ;";//Storing MySQL query in A string variable
-            ResultSet rs = statement.executeQuery(query);//executing query and storing result in ResultSet
-
-//where (StationFrom=SFrom AND StationTo=STo AND StationDate=SDate)
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway", "root", "");
+            Statement sta = con.createStatement();
+            String a = "select * from traintimings where StationFrom='" + from1 + "'and StationTo='" + to1 + "';";
+            ResultSet rs = sta.executeQuery(a);
             while (rs.next()) {
-
-                //Retrieving details from the database and storing it in the String variables
-//                String rank = rs.getString("id");
-                String SFrom = rs.getString("StationFrom");
-                String STo = rs.getString("StationTo");
-                String SDate=rs.getString("StationDate");
-//                if(sf==SFrom || st==STo || sd==SDate){
-                    defaultTableModel.addRow(new Object[]{SFrom, STo,SDate});//Adding row in Table
-                break;
-//                }
-
-
+                String stationFrom = rs.getString(1);
+                String stationTo = rs.getString(2);
+                String stationDate = rs.getString(3);
+                int trainNo = rs.getInt(4);
+                String trainName = rs.getString(5);
+                int rent = rs.getInt(6);
+                int seats = rs.getInt(7);
+                String arrivalTime = rs.getString(8);
+                String departureTime = rs.getString(9);
+                dm.addRow(new Object[]{stationFrom, stationTo, stationDate, trainNo, trainName, rent, seats, arrivalTime, departureTime});
 
             }
+            rs.close();
 
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
+
 
     }
 
