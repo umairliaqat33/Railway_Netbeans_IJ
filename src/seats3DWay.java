@@ -4,17 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class seats3DWay{
 
     public seats3DWay(){}
 
-    private void initialComponents() {
+    public void initialComponents() {
         sFrame=new JFrame("Book Seats 3D Way");
         sFrame.setLayout(new GridLayout(1,2));
         sFrame.setVisible(true);
-        sFrame.setBounds(300,100,600,400);
+        sFrame.setBounds(0,0,600,400);
         jPanel4 = new  JPanel();
         jLabel5 = new  JLabel();
         jLabel6 = new  JLabel();
@@ -65,18 +66,21 @@ public class seats3DWay{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway", "root", "");
             Statement st = con.createStatement();
-//            String a = "select ticket_no from ticket;";
-//            ResultSet rs = st.executeQuery(a);
-//
-//            while (rs.next()) {
-//
-//
-//            }
+            String a = "select ticket_no from ticket;";
+            ResultSet rs = st.executeQuery(a);
 
-//            rs.close();
+            while (rs.next()) {
+                for(int k=0;k<=32;k++){
+                    int i=rs.getInt("ticket_no");
+                    seats[i].setEnabled(false);
+
+                }
+            }
+            rs.close();
 
         } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "ERROR IN CONNECTIVITY");
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -84,38 +88,38 @@ public class seats3DWay{
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-//        try {
-//            for ( UIManager.LookAndFeelInfo info :  UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                     UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+//         */
+////        try {
+////            for ( UIManager.LookAndFeelInfo info :  UIManager.getInstalledLookAndFeels()) {
+////                if ("Nimbus".equals(info.getName())) {
+////                     UIManager.setLookAndFeel(info.getClassName());
+////                    break;
+////                }
+////            }
+////        } catch (ClassNotFoundException ex) {
+////            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+////        } catch (InstantiationException ex) {
+////            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+////        } catch (IllegalAccessException ex) {
+////            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+////        } catch ( UnsupportedLookAndFeelException ex) {
+////            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+////        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new seats3DWay().initialComponents();
 //            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch ( UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new seats3DWay().initialComponents();
-            }
-        });
-    }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
@@ -134,6 +138,9 @@ public class seats3DWay{
         @Override
         public void actionPerformed(ActionEvent e) {
             seats[index].setEnabled(false);
+            Ticket_Book ticket_book=new Ticket_Book(index);
+            ticket_book.setVisible(true);
+            ticket_book.bookSeatButton1();
         }
     }
     // End of variables declaration//GEN-END:variables

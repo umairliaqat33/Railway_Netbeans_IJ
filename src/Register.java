@@ -52,7 +52,7 @@ public class Register extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 153, 0));
         jLabel1.setText("Register");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(175, 30, 145, 47);
+        jLabel1.setBounds(155, 30, 145, 47);
 
         jLabel2.setFont(new java.awt.Font("Segoe Print", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));

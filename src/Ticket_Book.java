@@ -25,6 +25,10 @@ public class Ticket_Book extends javax.swing.JFrame {
     public Ticket_Book() {
         initComponents();
     }
+    public Ticket_Book(int n){
+        index=n;
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -414,7 +418,7 @@ public class Ticket_Book extends javax.swing.JFrame {
 
             Random random = new Random();
             int ticket_no;
-            ticket_no = 1 + random.nextInt(9999);
+            ticket_no = 1 + random.nextInt(32);
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway", "root", "");
@@ -442,6 +446,56 @@ public class Ticket_Book extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Book_buttonActionPerformed
 
+    public void bookSeatButton1(){
+        Book_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Book_buttonActionPerformed1(evt);
+            }
+        });
+
+    }
+    private void Book_buttonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Book_buttonActionPerformed
+        try {
+            String name, age, gender, charge, train_no, date,phoneno;
+            name = txtname.getText();
+            age = txtage.getText();
+            phoneno = txtphone.getText();
+            gender = (String) cb_gender.getSelectedItem();
+            train_no = (String) combo_box.getSelectedItem();
+            date = txtdate.getText();
+            charge = txtrent.getText();
+            txtcharge.setText("" + charge);
+
+            Random random = new Random();
+            int ticket_no;
+            ticket_no = 1 + random.nextInt(32);
+//            ticket_no=ticket_no*index;
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway", "root", "");
+            Statement st = con.createStatement();
+            String a = ("insert into ticket values('" + ticket_no + "','" + train_no + "','" + name + "','" + Integer.parseInt(phoneno)  + "','" + age + "','" + date + "','" + gender + "','" + charge + "');");
+            st.executeUpdate(a);
+            combo_box.removeAllItems();
+            JOptionPane.showMessageDialog(null, " Hello, " + name + "\n Your Ticket has been booked.\n Ticket Number: " + ticket_no);
+            String b = ("update traintimings set seats=seats-1 where trainNo=" + train_no + ";");
+            st.executeUpdate(b);
+            txtname.setText("");
+            txtage.setText("");
+            txtcharge.setText("");
+            txtdate.setText("");
+            txtphone.setText("");
+            txttname.setText("");
+            txtfrom.setText("");
+            txtto.setText("");
+            txtseats.setText("");
+            txtrent.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            System.out.println(e.getMessage());
+
+        }
+    }//GEN-LAST:event_Book_buttonActionPerformed
 
     private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
 
@@ -571,5 +625,6 @@ public class Ticket_Book extends javax.swing.JFrame {
     private javax.swing.JTextField txtseats;
     private javax.swing.JTextField txttname;
     private javax.swing.JTextField txtto;
+    int index;
     // End of variables declaration//GEN-END:variables
 }
