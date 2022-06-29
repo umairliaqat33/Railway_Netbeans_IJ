@@ -25,8 +25,9 @@ public class seats3DWay{
         seatsPanel.setLayout(new GridLayout(8,4,10,10));
         for(int i=0;i<32;i++){
             seats[i]=new JButton(""+i);
-            seats[i].setBounds(100,100,100,100);
+//            seats[i].setBounds(100,100,100,100);
             seats[i].addActionListener(new seatsAction(i));
+            seats[i].setBackground(new java.awt.Color(0, 204, 0));
             seatsPanel.add(seats[i]);
         }
 
@@ -73,6 +74,8 @@ public class seats3DWay{
                 for(int k=0;k<=32;k++){
                     int i=rs.getInt("ticket_no");
                     seats[i].setEnabled(false);
+                    seats[i].setBackground(new java.awt.Color(255, 77, 77));
+
 
                 }
             }
@@ -88,38 +91,38 @@ public class seats3DWay{
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-//         */
-////        try {
-////            for ( UIManager.LookAndFeelInfo info :  UIManager.getInstalledLookAndFeels()) {
-////                if ("Nimbus".equals(info.getName())) {
-////                     UIManager.setLookAndFeel(info.getClassName());
-////                    break;
-////                }
-////            }
-////        } catch (ClassNotFoundException ex) {
-////            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        } catch (InstantiationException ex) {
-////            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        } catch (IllegalAccessException ex) {
-////            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        } catch ( UnsupportedLookAndFeelException ex) {
-////            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-////        }
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new seats3DWay().initialComponents();
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+//        try {
+//            for ( UIManager.LookAndFeelInfo info :  UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                     UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
 //            }
-//        });
-//    }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch ( UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(seats3DWay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new seats3DWay().initialComponents();
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
@@ -139,6 +142,7 @@ public class seats3DWay{
         public void actionPerformed(ActionEvent e) {
             seats[index].setEnabled(false);
             Ticket_Book ticket_book=new Ticket_Book(index);
+            sFrame.dispose();
             ticket_book.setVisible(true);
             ticket_book.bookSeatButton1();
         }

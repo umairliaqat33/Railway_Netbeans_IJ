@@ -418,7 +418,7 @@ public class Ticket_Book extends javax.swing.JFrame {
 
             Random random = new Random();
             int ticket_no;
-            ticket_no = 1 + random.nextInt(32);
+            ticket_no = 1 + random.nextInt(31);
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway", "root", "");
@@ -466,9 +466,8 @@ public class Ticket_Book extends javax.swing.JFrame {
             charge = txtrent.getText();
             txtcharge.setText("" + charge);
 
-            Random random = new Random();
             int ticket_no;
-            ticket_no = 1 + random.nextInt(32);
+            ticket_no = index;
 //            ticket_no=ticket_no*index;
 
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -490,6 +489,9 @@ public class Ticket_Book extends javax.swing.JFrame {
             txtto.setText("");
             txtseats.setText("");
             txtrent.setText("");
+            dispose();
+            seats3DWay seats3DWay=new seats3DWay();
+            seats3DWay.initialComponents();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             System.out.println(e.getMessage());
