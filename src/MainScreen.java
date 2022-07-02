@@ -104,7 +104,6 @@ public class MainScreen extends javax.swing.JFrame {
         PakistanRaiwaysLabel.setBounds(132, 22, 166, 33);
 
 
-
         searchTrainsPanel.setBackground(new java.awt.Color(255, 255, 255));
         searchTrainsPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 0), 2, true));
 
@@ -218,8 +217,6 @@ public class MainScreen extends javax.swing.JFrame {
         cancelledTicketsButton.addActionListener(new cancelledTicketsAction());
 
 
-
-
         becomeMemberButton.setBackground(new java.awt.Color(255, 255, 255));
         becomeMemberButton.setFont(new java.awt.Font("Segoe Print", 0, 12)); // NOI18N
         becomeMemberButton.setForeground(new java.awt.Color(0, 153, 0));
@@ -228,7 +225,6 @@ public class MainScreen extends javax.swing.JFrame {
         becomeMemberButton.setBounds(367, 362, 135, 104);
         becomeMemberButton.add(becomeMemberPanel);
         becomeMemberButton.addActionListener(new becomeMemberAction());
-
 
 
         bookTicketButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -241,7 +237,6 @@ public class MainScreen extends javax.swing.JFrame {
         bookTicketButton.addActionListener(new bookTicketsAction());
 
 
-
         book3DSeatsButton.setBackground(new java.awt.Color(255, 255, 255));
         book3DSeatsButton.setFont(new java.awt.Font("Segoe Print", 0, 10)); // NOI18N
         book3DSeatsButton.setForeground(new java.awt.Color(0, 153, 0));
@@ -250,7 +245,6 @@ public class MainScreen extends javax.swing.JFrame {
         book3DSeatsButton.setBounds(546, 498, 140, 107);
         book3DSeatsButton.add(book3DSeatsPanel);
         book3DSeatsButton.addActionListener(new book3dSeatsAction());
-
 
 
         jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\umair\\OneDrive\\Documents\\Semester 4\\Java\\Railway_Netbeans\\src\\main\\java\\images\\Pakistan Railway logo.png")); // NOI18N
@@ -382,44 +376,45 @@ public class MainScreen extends javax.swing.JFrame {
             login.setVisible(true);
         }
     }
+
     // End of variables declaration
-    public class bookTicketsAction implements ActionListener{
+    public class bookTicketsAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
-            Ticket_Book ticket_book=new Ticket_Book();
+            Ticket_Book ticket_book = new Ticket_Book();
             ticket_book.setVisible(true);
         }
     }
 
-    public class cancelledTicketsAction implements ActionListener{
+    public class cancelledTicketsAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
-            Cancel_Tickets cancel_tickets=new Cancel_Tickets();
+            Cancel_Tickets cancel_tickets = new Cancel_Tickets();
             cancel_tickets.setVisible(true);
         }
     }
 
 
-    public class bookedTicketsAction implements ActionListener{
+    public class bookedTicketsAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
-            Ticket_History ticket_history=new Ticket_History();
+            Ticket_History ticket_history = new Ticket_History();
             ticket_history.setVisible(true);
         }
     }
 
-    public class book3dSeatsAction implements ActionListener{
+    public class book3dSeatsAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
-            seats3DWay seats3DWay=new seats3DWay();
+            seats3DWay seats3DWay = new seats3DWay();
             seats3DWay.initialComponents();
         }
     }

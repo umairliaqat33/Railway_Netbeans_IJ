@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- *
  * @author umair
  */
 public class Login extends javax.swing.JFrame {
@@ -82,7 +81,7 @@ public class Login extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dispose();
-                Register register=new Register();
+                Register register = new Register();
                 register.setVisible(true);
             }
         });
@@ -163,43 +162,41 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField jTextField2;
-    String q="Select * from user where Name=? and Password=?";
+    String q = "Select * from user where Name=? and Password=?";
 
 
-    public class Action implements ActionListener{
+    public class Action implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println(jTextField2.getPassword());
-            if(e.getSource()==jButton2)
-            {
-                try{
+            if (e.getSource() == jButton2) {
+                try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
-                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway","root","");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway", "root", "");
 
                     PreparedStatement pst = con.prepareStatement(q);
                     pst.setString(1, jTextField1.getText());
                     pst.setString(2, String.valueOf(jTextField2.getPassword()));
                     ResultSet rs = pst.executeQuery();
 
-                    if(rs.next()){
+                    if (rs.next()) {
                         JOptionPane.showMessageDialog(null, "Username and password matched");
-                        MainScreen mainScreen=new MainScreen();
+                        MainScreen mainScreen = new MainScreen();
                         mainScreen.setVisible(true);
                         dispose();
-                    }
-                    else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Username and password did not matched!!!!!!");
                         jTextField1.setText("");
                         jTextField2.setText("");
                     }
                     con.close();
-                }
-                catch(Exception ae){
+                } catch (Exception ae) {
                     JOptionPane.showMessageDialog(null, ae);
                 }
 
-            }        }
+            }
+        }
     }
 
 

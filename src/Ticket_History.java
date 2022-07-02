@@ -337,9 +337,6 @@ public class Ticket_History extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-
-
-
     private void Find_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Find_buttonActionPerformed
         String ticketno = (String) combo_box.getSelectedItem();
         try {
@@ -432,9 +429,7 @@ public class Ticket_History extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_boxActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

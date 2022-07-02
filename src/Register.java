@@ -128,9 +128,6 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -187,33 +184,29 @@ public class Register extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            int opt=0;
-            if(e.getSource()==RegisterButton){
-                try{
+            int opt = 0;
+            if (e.getSource() == RegisterButton) {
+                try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
-                    Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway","root","");
-                    Statement stmt=connect.createStatement();
-                    ResultSet rs=stmt.executeQuery(qry);
+                    Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/railway", "root", "");
+                    Statement stmt = connect.createStatement();
+                    ResultSet rs = stmt.executeQuery(qry);
 
-                    while(rs.next())
-                    {
-                        if(rs.getString(1).equals(UsernameField.getText()))
-                        {
-                            opt=10;
+                    while (rs.next()) {
+                        if (rs.getString(1).equals(UsernameField.getText())) {
+                            opt = 10;
                             //    JOptionPane.showMessageDialog(null,"Username exist. Choose another name");
                             //System.out.println("Choose Another USername !");
-                        }
-                        else if(rs.getString(1)!=UsernameField.getText()){
+                        } else if (rs.getString(1) != UsernameField.getText()) {
                             opt = 20;
                         }
                         //System.out.println("outside if");
                         //System.out.println("Print"+rs.getString(1));
                     }
-                    if(opt==10){
-                        JOptionPane.showMessageDialog(null,"Username exist. Choose another name");
-                    }
-                    else if(opt==20){
-                        PreparedStatement stmnt=connect.prepareStatement(qry2);
+                    if (opt == 10) {
+                        JOptionPane.showMessageDialog(null, "Username exist. Choose another name");
+                    } else if (opt == 20) {
+                        PreparedStatement stmnt = connect.prepareStatement(qry2);
                         stmnt.setString(1, NameField.getText());
                         stmnt.setString(2, PasswordField.getText());
                         stmnt.setString(3, UsernameField.getText());
@@ -222,13 +215,12 @@ public class Register extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Account Created");
                         stmnt.execute();
                         dispose();
-                        Login login=new Login();
+                        Login login = new Login();
                         login.setVisible(true);
                     }
 
                     connect.close();
-                }
-                catch(Exception ex){
+                } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex);
                 }
                 //rFrame.dispose();
@@ -236,12 +228,12 @@ public class Register extends javax.swing.JFrame {
         }
     }
 
-    public class LAction implements ActionListener{
+    public class LAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
-            Login login=new Login();
+            Login login = new Login();
             login.setVisible(true);
         }
     }
